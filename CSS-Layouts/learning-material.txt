@@ -1,0 +1,7 @@
+page layout
+componet layout
+
+there are 3 ways of building layouts
+1) float
+2) flexbox
+3) grid

@@ -1,0 +1,96 @@
+position css property
+
+1) static --->
+
+    every element has a static position by default, so the element will stick to the normal page flow. 
+    So if there is a left/right/top/bottom/z-index set then there will be no effect on that element.
+
+2) relative--->
+   
+   an element’s original position remains in the flow of the document, just like the static value. 
+   But now left/right/top/bottom/z-index will work. The positional properties “nudge” the element from the original position in that direction.
+
+3) fixed*--->
+    
+    An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. 
+    The top, right, bottom, and left properties are used to position the element.
+
+    A fixed element does not leave a gap in the page where it would normally have been located.
+
+    Notice the fixed element in the lower-right corner of the page. Here is the CSS that is used:
+    
+     div.fixed {
+       position: fixed;
+       bottom: 0;
+       right: 0;
+       width: 300px;
+       border: 3px solid #73AD21;
+       }
+
+
+4) absolute--->
+    
+    The element is removed from the normal document flow, and no space is created for the element in the page layout. 
+    It is positioned relative to its closest positioned ancestor.
+    if any; otherwise, it is placed relative to the initial containing block. 
+    Its final position is determined by the values of top, right, bottom, and left.
+    
+5) sticky
+
+
+
+page-layout
+component-layout
+
+there are 3 ways to building layout
+
+1) float
+2) flexbox
+3) grid
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>>>> selector
+1) Simple selector(select elements based on name, id, class)
+2) combinators selector
+3) pseudo class selector(:)
+4) pseudo element selector(::)(::first-line,::first-letter,::before,::after)
+5) attribute selector()
+
+1) div, #id, .class
+2) There are four different combinators selector in CSS
+
+      descendant selector (space)(div p)
+      child selector (>)(div>p)
+      adjacent sibling selector (+)(div+p)
+      general sibling selector (~)(div~p)
+
+3) select elements based on a certain state
+     a:link, a:visited, a:hover, a:active
+     /* when we mix multiple elements inside of parent element then the pseudo classes dont work really well */
+     article p:first-child {color: red;}
+    /* article p:last-child{color: red;} */
+
+4) A CSS pseudo-element is used to style specified parts of an element.
+    Style the first letter, or line, of an element
+    Insert content before, or after, the content of an element
+    p::first-line {color: #ff0000;font-variant: small-caps;}
+
+5) [attribute] selector is used to select elements with a specified attribute.
+     a[target] ---> having attribute target
+     a[target="_blank"]--> having attribute target and value is _blank
+     [title~="flower"]--> haing attribute title and value containing specified words flower
+     [class|="top"]
+     [attribute^="value"] selector is used to select elements with the specified attribute, whose value starts with the specified value.
+
+
