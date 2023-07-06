@@ -1,0 +1,131 @@
+css selector
+
+1) simple selector : (p,.class, #id, p.class)
+
+2) combinational : (space, >, +, ~)
+
+ space: descendent 
+ >: child
+ +: adjcent sibling selector
+ ~: general sibling 
+
+3) psudo class
+
+selector:pseudo-class {
+  property: value;
+}
+
+a:link {
+  color: #FF0000;
+}
+
+/* visited link */
+a:visited {
+  color: #00FF00;
+}
+
+/* mouse over link */
+a:hover {
+  color: #FF00FF;
+}
+
+/* selected link */
+a:active {
+  color: #0000FF;
+}
+
+4) pseudo element
+
+selector::pseudo-element {
+  property: value;
+}
+
+p::first-line {
+  color: #ff0000;
+  font-variant: small-caps;
+}
+
+
+
+5) attribute selector
+
+a[target="_blank"] {
+  background-color: yellow;
+}
+
+
+
+>>>>>>>>>css speficity
+
+If there are two or more CSS rules that point to the same element, the selector with the highest specificity value will "win", and its style declaration will be applied to that HTML element.
+
+Specificity Hierarchy
+
+inline_style > id_selector > class_selector,pseudo_class,attribute_selector > element, pseudo_element
+
+
+lets suppose
+element = 1
+class = 10
+id  = 100
+inline = 1000
+
+
+Selector	Specificity Value	Calculation
+p	                1	           1
+p.test	           11	          1 + 10
+p#demo	           101	          1 + 100
+<pstyle="color: pink;">	1000	  1000
+#demo	          100	          100
+.test	          10	          10
+p.test1.test2	  21	          1 + 10 + 10
+#navbar p#demo	  201	          100 + 1 + 100
+*	               0	          0 (the universal selector is ignored)
+
+
+(sp:100)
+#test{ 
+    width:10px
+}
+
+(sp:10)
+.testclass{ 
+    width:10px
+}
+
+(sp:1)
+p{
+    width:10px
+}
+
+(sp:2)
+div+p{
+    width: 10px;
+}
+div p{
+    width: 10px;
+}
+
+div > p {
+    width: 10px;
+}
+
+div ~ p{
+    width: 10px;
+}
+p.class{
+    width: 10px;
+}
+.a:link{
+    width: 10px;
+}
+.p::before{
+    width: 10px;
+}
+
+A) 13
+B) 12
+C) 11
+D) 20
+E) 14
+F) 111
