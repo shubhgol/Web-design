@@ -9,7 +9,12 @@ css selector
  +: adjcent sibling selector
  ~: general sibling 
 
-3) psudo class
+a) div p ==> select all p tags inside div element
+b) div>p ==> select p tags which are child of div
+c) div+p ==> select p tags which are adjacent to div
+d) div~p ==>  all <p> elements that are next siblings of <div> elements
+
+3) psudo class(selector:pseudo-class)
 
 selector:pseudo-class {
   property: value;
