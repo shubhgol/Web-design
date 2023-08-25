@@ -1,0 +1,11 @@
+source: https://tapajyoti-bose.medium.com/deep-dive-into-how-web-browsers-work-with-illustrations-%EF%B8%8F-b6cf69af1a08#:~:text=First%2C%20the%20client%20sends%20a,the%20server%20acknowledging%20the%20request.
+
+1) Navigation  ==> DNS Lookup(database of public ip addresses)
+2) Fetch resources
+3) HTML Parsing
+4) CSS Parsing
+5) Excuting JavaScript(JIT)
+6) Rendering (renderTree Construction==>Layout=>Painting==>Layering&Compositing)
+
+step-1&2
+DNS==>3way-TCP==>TLS==>request==>response
