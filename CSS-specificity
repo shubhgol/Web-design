@@ -32,3 +32,109 @@ Each selector is broken down into these four categories, and its specificity is 
 3. `!important` overrides specificity (but should be avoided).
 4. Inline styles override all CSS rules except `!important`.
 5. Universal selector (`*`) has the lowest priority.
+
+
+
+>>>>>>>>>>Example
+
+
+
+Here are the answers and explanations for the CSS specificity questions:
+
+---
+
+### **Question 1**: Specificity Calculation  
+
+| Selector                 | Specificity Calculation | Score |
+|--------------------------|------------------------|-------|
+| `div p`                 | (0, 0, 0, 2)           | 2     |
+| `#header .nav a`        | (0, 1, 1, 1)           | 111   |
+| `ul li.active:hover`    | (0, 0, 2, 2)           | 22    |
+| `h1.title strong`       | (0, 0, 1, 2)           | 12    |
+| `style="color: red;"`   | (1, 0, 0, 0)           | 1000  |
+
+✅ **Explanation**:  
+- **ID selectors (`#header`)** have higher specificity (100).  
+- **Class selectors (`.nav`, `.active`), attributes (`[attr]`), and pseudo-classes (`:hover`)** count as 10 each.  
+- **Element selectors (`div`, `p`, `h1`, `ul`, `li`, `strong`)** count as 1 each.  
+- **Inline styles (`style="..."`)** have the highest specificity (1000).  
+
+---
+
+### **Question 2**: Which Rule Applies?  
+
+```css
+p { color: blue; }             /* (0, 0, 0, 1) → 1 */
+.text { color: red; }          /* (0, 0, 1, 0) → 10 */
+#main p { color: green; }      /* (0, 1, 0, 1) → 101 */
+p.text { color: orange; }      /* (0, 0, 1, 1) → 11 */
+```
+
+**HTML:**
+```html
+<div id="main">
+  <p class="text">Hello World</p>
+</div>
+```
+
+**Final color:** **Green (`#main p { color: green; }`)**  
+
+✅ **Explanation**:  
+- `p { color: blue; }` (specificity = 1)  
+- `.text { color: red; }` (specificity = 10)  
+- `p.text { color: orange; }` (specificity = 11)  
+- `#main p { color: green; }` (specificity = 101) → **Highest specificity wins!**  
+
+---
+
+### **Question 3**: Resolving Specificity Conflicts  
+
+```css
+button { background-color: blue; }   /* (0, 0, 0, 1) → 1 */
+.btn { background-color: green; }    /* (0, 0, 1, 0) → 10 */
+#submit { background-color: red; }   /* (0, 1, 0, 0) → 100 */
+```
+
+**HTML:**
+```html
+<button id="submit" class="btn">Click Me</button>
+```
+
+**Final background color:** **Red (`#submit { background-color: red; }`)**  
+
+✅ **Explanation**:  
+- `button` (specificity = 1)  
+- `.btn` (specificity = 10)  
+- `#submit` (specificity = 100) → **Highest specificity wins!**  
+
+---
+
+### **Question 4**: Inline vs. External CSS  
+
+```css
+#content p { font-size: 20px; }    /* (0, 1, 0, 1) → 101 */
+p { font-size: 16px !important; }  /* (0, 0, 0, 1) → 1 but !important */
+```
+
+**HTML:**
+```html
+<div id="content">
+  <p style="font-size: 18px;">Hello</p>
+</div>
+```
+
+**Final font size:** **16px (from `p { font-size: 16px !important; }`)**  
+
+✅ **Explanation**:  
+- Inline styles (`style="font-size: 18px;"`) → **Specificity = 1000**  
+- `#content p { font-size: 20px; }` → **Specificity = 101**  
+- `p { font-size: 16px !important; }` → **Specificity = 1**, but `!important` overrides everything!  
+
+---
+
+### **Summary of Key Takeaways**  
+✔ **Higher specificity wins** (IDs > Classes > Elements).  
+✔ **If specificity is the same, the last rule in the CSS file applies.**  
+✔ **Inline styles (`style="..."`) have the highest specificity (1000).**  
+✔ **`!important` overrides all normal specificity rules.**  
+
