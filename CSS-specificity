@@ -1,0 +1,34 @@
+CSS specificity determines which styles take precedence when multiple rules target the same element. It is calculated based on the types of selectors used in a rule.
+
+### **Specificity Hierarchy**
+CSS assigns different weights to different types of selectors:
+
+1. **Inline styles** (e.g., `style="color: red;"`) → **1000**
+2. **IDs** (e.g., `#my-id`) → **100**
+3. **Classes, attributes, and pseudo-classes** (e.g., `.my-class`, `[type="text"]`, `:hover`) → **10**
+4. **Elements and pseudo-elements** (e.g., `div`, `p`, `::before`) → **1**
+5. **Universal selector (`*`) and combinators (`+`, `>`, `~`, ` `)** → **0** (No specificity)
+
+### **Calculating Specificity**
+Each selector is broken down into these four categories, and its specificity is written as a four-part number `(A, B, C, D)`:
+- A → Number of inline styles.
+- B → Number of ID selectors.
+- C → Number of class, attribute, and pseudo-class selectors.
+- D → Number of element and pseudo-element selectors.
+
+#### **Examples**
+| Selector               | Specificity Calculation | Score |
+|------------------------|------------------------|-------|
+| `h1`                  | (0, 0, 0, 1)            | 1     |
+| `.title`              | (0, 0, 1, 0)            | 10    |
+| `#main`               | (0, 1, 0, 0)            | 100   |
+| `div p .text`         | (0, 0, 1, 2)            | 12    |
+| `#header .nav a`      | (0, 1, 1, 1)            | 111   |
+| `style="color: red;"` | (1, 0, 0, 0)            | 1000  |
+
+### **Rules of Specificity**
+1. Higher specificity wins.
+2. If specificity is the same, the **last defined rule** in the CSS file wins.
+3. `!important` overrides specificity (but should be avoided).
+4. Inline styles override all CSS rules except `!important`.
+5. Universal selector (`*`) has the lowest priority.
